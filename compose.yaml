@@ -1,0 +1,42 @@
+version: "3"
+
+services:
+  strapi:
+    image: strapi/strapi
+    container_name: strapi  
+    restart: always    
+    ports:
+      - 1337:1337
+    volumes:
+      - ./app:/src/app
+    depends_on:
+      - mongodb
+    env_file:
+      - ./.env
+  
+  mongodb:
+    image: mongo
+    container_name: db
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    env_file:
+      - ./.env
+    
+
+  nginx:
+    build: 
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - strapi
+
+volumes:
+  data:
+  app:
