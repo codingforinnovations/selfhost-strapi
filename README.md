@@ -13,7 +13,7 @@
 
 Self-hosting Strapi using Docker and Nginx.
 
-### Youtube Video: [Link]()
+### Youtube Video: [Link](https://youtu.be/zBFfF_Z6KJM)
 
 ## 📚 Stack
 
